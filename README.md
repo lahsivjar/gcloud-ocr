@@ -9,3 +9,9 @@ gcloud functions deploy DetectTextsFromGCS \
   --trigger-resource <target_bucket_name> \
   --trigger-event google.storage.object.finalize
 ```
+
+```
+gcloud functions deploy DetectTextsFromImage \
+  --runtime go111 \
+  --trigger-topic image-file-types
+```
