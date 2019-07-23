@@ -4,7 +4,7 @@ Sample code to use google functions with vision API and google cloud storage
 
 ## Pipeline
 
-[OCR flow](ocr-flow.jpg)
+![OCR flow](ocr-flow.jpg)
 
 ## Pre setup
 
