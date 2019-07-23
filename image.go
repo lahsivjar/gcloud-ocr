@@ -38,15 +38,15 @@ func DetectTextsFromImage(ctx context.Context, m models.PubSubMessage) error {
 		return fmt.Errorf("failed to detect document text: %v", err)
 	}
 
-	log.Printf("Detected texts: %v\n", annotations)
+	var detectedTexts []string
+	if len(annotations) > 0 {
+		for i := range annotations {
+			a := annotations[i]
+			detectedTexts = append(detectedTexts, a.Description)
+		}
+	}
 
-	//if len(annotations) > 0 {
-	//	for a := range annotations {
-	//		log.Printf("detected text: %v\n", a.Description)
-	//		g := models.GCSEvent{}
-	//		err := g.Decode(a.Description)
-	//	}
-	//}
+	log.Printf("Detected texts: %v\n", detectedTexts)
 
 	return nil
 }
