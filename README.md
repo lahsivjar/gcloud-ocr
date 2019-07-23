@@ -2,7 +2,17 @@
 
 Sample code to use google functions with vision API and google cloud storage
 
-## Deploy with
+## Pipeline
+
+[OCR flow](ocr-flow.jpg)
+
+## Pre setup
+
+- Create pub/sub topic with name `image-file-type`
+- Create pub/sub topic with name `pdf-file-type`
+- Create pub/sub topic with name `es-upload`
+
+## Deployment
 ```
 gcloud functions deploy DetectTextsFromGCS \
   --runtime go111 \
