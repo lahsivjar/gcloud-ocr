@@ -14,7 +14,7 @@ Sample code to use google functions with vision API and google cloud storage
 
 ## Deployment
 ```
-gcloud functions deploy DetectTextsFromGCS \
+gcloud functions deploy DispatchWithFileType \
   --runtime go111 \
   --trigger-resource <target_bucket_name> \
   --trigger-event google.storage.object.finalize
