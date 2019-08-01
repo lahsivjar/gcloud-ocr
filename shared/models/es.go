@@ -7,8 +7,8 @@ import (
 
 // ESPayload is the payload to send to es upload topic
 type ESPayload struct {
-	Event        GCSEvent `json:"event"`
-	DetectedText []string `json:"detectedText"`
+	Event         GCSEvent `json:"event"`
+	DetectedTexts []string `json:"detectedTexts"`
 }
 
 // Encode encodes the ESPayload in byte array

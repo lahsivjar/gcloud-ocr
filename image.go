@@ -1,9 +1,7 @@
 package ocr
 
 import (
-	"bytes"
 	"context"
-	"encoding/gob"
 	"fmt"
 	"log"
 
@@ -51,9 +49,14 @@ func DetectTextsFromImage(ctx context.Context, m models.PubSubMessage) error {
 
 	log.Printf("Detected texts: %v\n", detectedTexts)
 
-	msg, err := encodeFileData(detectedTexts)
+	ep := models.ESPayload{
+		Event:         g,
+		DetectedTexts: detectedTexts,
+	}
+
+	msg, err := ep.Encode()
 	if err != nil {
-		return fmt.Errorf("pubsub.NewClient: %v", err)
+		return err
 	}
 
 	sID, err := ocrpubsub.Publish(ctx, ocrpubsub.ESUploadTopic, msg)
@@ -63,12 +66,4 @@ func DetectTextsFromImage(ctx context.Context, m models.PubSubMessage) error {
 
 	log.Printf("Published a message with msg ID: %v\n", sID)
 	return nil
-}
-
-func encodeFileData(content []string) (bytes.Buffer, error) {
-	var b bytes.Buffer
-	e := gob.NewEncoder(&b)
-
-	err := e.Encode(content)
-	return b, err
 }
